@@ -1,0 +1,24 @@
+
+
+<button type="button" (click)="openModal()" class="btn btn-danger">Crear Nuevo Gasto</button>
+<br><br>
+<div *ngIf="expenses.length; else nodata" class="row">
+  <div class="col-sm-6 col-md-3 card-grid animated slideInRight" *ngFor="let expense of expenses | slice:0:20">
+    <div class="card" >
+      <div class="card-body">
+        <h5 class="card-title">{{expense.description}}</h5>
+        <div>{{expense.cost }} €</div>
+        <p class="card-text">
+            <small class="text-muted">{{expense.date | date}} </small> 
+        </p>
+        <a (click)="delete(expense.id)" class="btn btn-warning">Borrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-add-expense *ngIf="openCreateModal" [show]="openCreateModal" (changed)=changed($event)></app-add-expense>
+
+<ng-template #nodata>
+  No hay resultados
+</ng-template>

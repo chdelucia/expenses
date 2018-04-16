@@ -1,0 +1,46 @@
+.web-breadcrumb {
+    width: 100%;
+}
+
+ol.breadcrumb {
+    background-color: transparent;
+    display: inline-flex;
+    padding: 0 1em;
+}
+
+a.breadcrumb {
+    background-color: transparent;  
+}
+
+a.link-breadcrumb {
+    font-family: RalewayLight;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #000;    
+}
+
+.breadcrumb > li:nth-last-child(1) > a {
+    color: #000;
+    font-family: RalewayBold;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.breadcrumb> li+li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: ">\00a0";
+    width: 5.3px;
+    height: 8.6px;
+}
+
+.breadcrumb>li+li:after {
+    padding: 0 5px;
+    color: #ccc;
+    content: "\00a0";
+}
+
+.breadcrumb > li:nth-last-child(1) > a {
+    font-weight: bold;
+}

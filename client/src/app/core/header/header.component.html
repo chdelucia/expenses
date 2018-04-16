@@ -1,0 +1,4 @@
+<header>
+  <a *ngFor="let item of menuItems" [routerLink]="item.link" class="menu-link" routerLinkActive="menu-link--active">{{item.caption}}</a>
+
+</header>
