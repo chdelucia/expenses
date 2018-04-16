@@ -1,5 +1,5 @@
 # expenses
-Control expenses
+App to manage expenses 
 
 ## Run BackEnd Server
 Run `cd api-rest`
