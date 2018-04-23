@@ -24,10 +24,8 @@ export class ExpenseService {
       .retry(2)
       .pipe(
         tap(res => console.table(res)),
-        shareReplay(1),
         catchError(this.handleError<Expense[]>('getExpenses', []))
       )
-      .share()
       .finally(() => this.logger.info(this.constructor.name, 'getExpenses', 'llamada exitosa'));
   }
 
@@ -37,6 +35,7 @@ export class ExpenseService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' })
     };
     return this.http.post(this.baseUrl, JSON.stringify(expense), httpOptions)
+      .retry(2)
       .pipe(
         tap(res => console.table(res)),
         catchError(this.handleError<Expense[]>('createExpense', []))

@@ -1,6 +1,11 @@
-import { Component, EventEmitter, Input, Output, OnChanges, OnInit, OnDestroy, } from '@angular/core';
-import { Subject } from 'rxjs';
+// Angular
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+
+//Rxjs
+import { Subject } from 'Rxjs';
+
+// Models and Services
 import { Expense, ModelForm } from '../shared/models/user';
 import { ExpenseService } from '../shared/services/expense.service';
 
@@ -31,7 +36,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
    * Create an Expense and emit it
    * @param {Expense} expensesForm 
    */
-  save(expensesForm: Expense) {
+  onSave(expensesForm: Expense) {
     expensesForm.date = expensesForm.date ? new Date(expensesForm.date) : new Date();
     this.expenseService.createExpense(expensesForm)
     .takeUntil(this.unsubscribe)
@@ -54,7 +59,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
   /**
    * Close the modal
    */
-  close():void {
+  onClose():void {
     this.show = false;
     this.changed.emit(null);
   }
