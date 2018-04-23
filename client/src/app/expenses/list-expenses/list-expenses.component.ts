@@ -1,14 +1,13 @@
-import { PersonService } from '../shared/services/person.service';
+import { ExpenseService } from '../shared/services/expense.service';
 import { Expense } from '../shared/models/user';
 
 import { Component, OnInit, OnDestroy, ViewEncapsulation, OnChanges } from '@angular/core';
 import 'rxjs/add/operator/retry';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription } from 'Rxjs';
 import 'rxjs/add/operator/takeUntil';
 import { Subject } from 'rxjs/Subject';
 import { AfterContentChecked, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'Rxjs';
 
 
 @Component({
@@ -23,7 +22,7 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
   openCreateModal: boolean;
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private expenseService: PersonService) { }
+  constructor(private expenseService: ExpenseService) { }
 
 
   ngOnInit() {

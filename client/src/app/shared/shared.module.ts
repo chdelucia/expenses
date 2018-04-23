@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonService } from '../expenses/shared/services/person.service';
+import { ExpenseService } from '../expenses/shared/services/expense.service';
 
 @NgModule({
   imports: [
@@ -9,7 +9,7 @@ import { PersonService } from '../expenses/shared/services/person.service';
     FormsModule,
   ],
   declarations: [ ],
-  providers: [PersonService],
+  providers: [ExpenseService],
   exports: [ 
     CommonModule, 
     FormsModule,

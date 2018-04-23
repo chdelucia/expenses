@@ -3,7 +3,7 @@ import { LogService } from './../../../core/logs.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'Rxjs';
 import { catchError, map, tap, shareReplay } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/finally';
@@ -11,11 +11,9 @@ import 'rxjs/add/operator/finally';
 import { Expense } from './../models/user';
 
 @Injectable()
-export class PersonService {
+export class ExpenseService {
   baseUrl = 'http://localhost:3000/api/expenses/';
-
   constructor(private http: HttpClient, private logger: LogService) {
-    console.log('creo el servicio');
   }
 
   getExpenses(): Observable<Expense[]> {

@@ -2,6 +2,8 @@
 
 <button type="button" (click)="openModal()" class="btn btn-danger">Crear Nuevo Gasto</button>
 <br><br>
+
+
 <div *ngIf="expenses.length; else nodata" class="row">
   <div class="col-sm-6 col-md-3 card-grid animated slideInRight" *ngFor="let expense of expenses | slice:0:20">
     <div class="card" >
