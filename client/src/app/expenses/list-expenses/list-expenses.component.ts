@@ -22,6 +22,7 @@ import { Expense } from '../shared/models/user';
 export class ListExpensesComponent implements OnInit, OnDestroy {
   expenses: Expense[];
   openCreateModal: boolean;
+  alertMessage: string;
   private unsubscribe: Subject<void> = new Subject();
 
   /**
@@ -49,12 +50,19 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.log('An error occurred:', err.error.message);
+            this.alertMessage = 'An error occurred:' + err.error.message;
           } else {
             // The backend returned an unsuccessful response code.
-            console.log(`Backend returned code ${err.status}, body was: ${err.message}`);
+            this.alertMessage = `Backend returned code ${err.status}, body was: ${err.message}`;
           }
         });
+  }
+
+  /**
+   * Dismiss alert
+   */
+  onCloseAlert() {
+    this.alertMessage = '';
   }
 
   /**

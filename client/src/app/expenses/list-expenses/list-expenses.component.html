@@ -3,8 +3,14 @@
 <button type="button" (click)="openModal()" class="btn btn-danger">Crear Nuevo Gasto</button>
 <br><br>
 
+<div *ngIf='alertMessage' class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{alertMessage}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)='onCloseAlert()'>
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
-<div *ngIf="expenses.length; else nodata" class="row">
+<div *ngIf="expenses; else nodata" class="row">
   <div class="col-sm-6 col-md-3 card-grid animated slideInRight" *ngFor="let expense of expenses | slice:0:20">
     <div class="card" >
       <div class="card-body">
@@ -19,8 +25,9 @@
   </div>
 </div>
 
-<app-add-expense *ngIf="openCreateModal" [show]="openCreateModal" (changed)=onChanged($event)></app-add-expense>
+<app-add-expense [show]="openCreateModal" (changed)=onChanged($event)></app-add-expense>
 
+<!-- TODO move it to a service and hide it throw eventEmmiter on finally -->
 <ng-template #nodata>
-  No hay resultados
+  <div *ngIf="!alertMessage">Loading...</div>
 </ng-template>
