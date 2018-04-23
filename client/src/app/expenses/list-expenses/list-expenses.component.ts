@@ -29,6 +29,10 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
     this.getExpenses();
   }
 
+
+  /**
+   * get the list of expenses
+   */
   getExpenses(): void {
     this.expenseService.getExpenses()
       .takeUntil(this.unsubscribe)
@@ -47,18 +51,29 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Open the modal to create a new expense
+   */
   openModal(): void {
     this.openCreateModal = true;
   }
 
-  changed(expense: Expense): void {
+  /**
+   * Update the list of expenses
+   * @param {Expense} expense 
+   */
+  onChanged(expense: Expense): void {
     if (expense){
       this.expenses.push(expense);
     }
     this.openCreateModal = false;
   }
 
-  delete(id: string): void {
+  /**
+   * delete expense and update the list.
+   * @param {strin} id 
+   */
+  onDelete(id: string): void {
     this.expenseService.deleteExpense(id).subscribe(
       (result: any) => {
         this.expenses = this.expenses.filter( expense => {
@@ -77,6 +92,9 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
   }
 
 
+  /** 
+   * Cancel subscriptions
+  */
   ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();

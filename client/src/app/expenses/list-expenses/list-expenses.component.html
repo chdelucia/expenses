@@ -13,13 +13,13 @@
         <p class="card-text">
             <small class="text-muted">{{expense.date | date}} </small> 
         </p>
-        <a (click)="delete(expense.id)" class="btn btn-warning">Borrar</a>
+        <a (click)="onDelete(expense.id)" class="btn btn-warning">Borrar</a>
       </div>
     </div>
   </div>
 </div>
 
-<app-add-expense *ngIf="openCreateModal" [show]="openCreateModal" (changed)=changed($event)></app-add-expense>
+<app-add-expense *ngIf="openCreateModal" [show]="openCreateModal" (changed)=onChanged($event)></app-add-expense>
 
 <ng-template #nodata>
   No hay resultados
