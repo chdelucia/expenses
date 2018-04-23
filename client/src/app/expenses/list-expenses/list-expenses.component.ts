@@ -1,9 +1,10 @@
+
 // Angular
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 // Rxjs
-import { Observable, Subject } from 'Rxjs';
+import { Subject } from 'Rxjs';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/takeUntil';
 
@@ -24,8 +25,8 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject();
 
   /**
-   * 
-   * @param {ExpenseService} expenseService 
+   *
+   * @param {ExpenseService} expenseService
    */
   constructor(private expenseService: ExpenseService) { }
 
@@ -65,7 +66,7 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
 
   /**
    * Update the list of expenses
-   * @param {Expense} expense 
+   * @param {Expense} expense
    */
   onChanged(expense: Expense): void {
     if (expense) {
@@ -76,14 +77,14 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
 
   /**
    * delete expense and update the list.
-   * @param {strin} id 
+   * @param {strin} id
    */
   onDelete(id: string): void {
     this.expenseService.deleteExpense(id).subscribe(
       (result: any) => {
         this.expenses = this.expenses.filter(expense => {
           return expense.id !== id;
-        })
+        });
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
@@ -97,7 +98,7 @@ export class ListExpensesComponent implements OnInit, OnDestroy {
   }
 
 
-  /** 
+  /**
    * Cancel subscriptions
   */
   ngOnDestroy() {

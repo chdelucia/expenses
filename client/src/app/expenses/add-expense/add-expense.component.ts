@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-//Rxjs
+// Rxjs
 import { Subject } from 'Rxjs';
 
 // Models and Services
@@ -18,14 +18,14 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
 
   @Input() show: boolean; // Show the form
   @Output() changed = new EventEmitter<Expense>(); // Send the new expense
-  model: ModelForm = new ModelForm(); 
+  model: ModelForm = new ModelForm();
 
   /** while exist keep sucription alive */
   private unsubscribe: Subject<void> = new Subject();
 
   /**
-   * 
-   * @param {ExpenseService} expenseService 
+   *
+   * @param {ExpenseService} expenseService
    */
   constructor(private expenseService: ExpenseService) { }
 
@@ -34,7 +34,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
 
   /**
    * Create an Expense and emit it
-   * @param {Expense} expensesForm 
+   * @param {Expense} expensesForm
    */
   onSave(expensesForm: Expense) {
     expensesForm.date = expensesForm.date ? new Date(expensesForm.date) : new Date();
@@ -43,7 +43,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
     .subscribe(
       (expense: Expense) => {
         this.changed.emit(expense);
-      }, 
+      },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           // A client-side or network error occurred. Handle it accordingly.
@@ -59,15 +59,15 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
   /**
    * Close the modal
    */
-  onClose():void {
+  onClose(): void {
     this.show = false;
     this.changed.emit(null);
   }
 
-  /** 
+  /**
    * Cancel subscriptions
   */
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
