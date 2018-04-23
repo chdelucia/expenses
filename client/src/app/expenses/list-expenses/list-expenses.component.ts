@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 // Rxjs
-import { Subject } from 'Rxjs';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/takeUntil';
 
