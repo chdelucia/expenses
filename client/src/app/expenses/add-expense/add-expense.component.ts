@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, OnInit, OnDestroy, } from '@angular/core';
 import { Expense, ModelForm } from '../shared/models/user';
-import { PersonService } from '../shared/services/person.service';
+import { ExpenseService } from '../shared/services/expense.service';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject();
 
-  constructor(private person: PersonService) { }
+  constructor(private expenseService: ExpenseService) { }
 
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class AddExpenseComponent implements OnInit, OnDestroy {
 
   save(expensesForm: Expense) {
     expensesForm.date = expensesForm.date ? new Date(expensesForm.date) : new Date();
-    this.person.createExpense(expensesForm)
+    this.expenseService.createExpense(expensesForm)
     .takeUntil(this.unsubscribe)
     .subscribe(
       (expense: Expense) => {
